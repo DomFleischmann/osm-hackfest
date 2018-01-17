@@ -1,0 +1,40 @@
+nsd:nsd-catalog:
+    nsd:nsd:
+    -   nsd:constituent-vnfd:
+        -   nsd:member-vnf-index: '1'
+            nsd:start-by-default: 'true'
+            nsd:vnfd-id-ref: hackfest3vnf
+        -   nsd:member-vnf-index: '2'
+            nsd:start-by-default: 'true'
+            nsd:vnfd-id-ref: hackfest3vnf
+        nsd:description: NS with 2 VNFs
+        nsd:id: 455a81db-859c-418d-b7bf-1b369c61391b
+        nsd:name: Hackfest-2-ns
+        nsd:short-name: Hackfest-2-ns
+        nsd:version: '1.0'
+        nsd:vld:
+        -   nsd:id: mgmt
+            nsd:mgmt-network: 'true'
+            nsd:name: mgmt
+            nsd:short-name: mgmt
+            nsd:type: ELAN
+            nsd:vim-network-name: mgmt
+            nsd:vnfd-connection-point-ref:
+            -   nsd:member-vnf-index-ref: '1'
+                nsd:vnfd-connection-point-ref: mgmt
+                nsd:vnfd-id-ref: hackfest3vnf
+            -   nsd:member-vnf-index-ref: '2'
+                nsd:vnfd-connection-point-ref: mgmt
+                nsd:vnfd-id-ref: hackfest3vnf
+        -   nsd:id: data
+            nsd:mgmt-network: 'false'
+            nsd:name: data
+            nsd:short-name: data
+            nsd:type: ELAN
+            nsd:vnfd-connection-point-ref:
+            -   nsd:member-vnf-index-ref: '1'
+                nsd:vnfd-connection-point-ref: data
+                nsd:vnfd-id-ref: hackfest3vnf
+            -   nsd:member-vnf-index-ref: '2'
+                nsd:vnfd-connection-point-ref: data
+                nsd:vnfd-id-ref: hackfest3vnf
