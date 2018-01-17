@@ -15,7 +15,7 @@ import charms.sshproxy
 
 @when_not('simple.installed')
 def install_simple_proxy_charm():
-    set_state('simple.installed')
+    set_flag('simple.installed')
     status_set('active', 'Ready!')
 
 
