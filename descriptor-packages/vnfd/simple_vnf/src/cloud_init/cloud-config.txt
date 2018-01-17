@@ -1,0 +1,9 @@
+#cloud-config
+
+write_files:
+-   content: |
+        # My new helloworld file
+
+    owner: root:root
+    permissions: '0644'
+    path: /root/helloworld.txt

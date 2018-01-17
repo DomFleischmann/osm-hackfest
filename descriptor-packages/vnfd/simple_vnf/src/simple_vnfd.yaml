@@ -1,0 +1,116 @@
+vnfd:vnfd-catalog:
+    vnfd:vnfd:
+    -   vnfd:connection-point:
+        -   vnfd:id: mgmt
+            vnfd:name: mgmt
+            vnfd:short-name: mgmt
+            vnfd:type: VPORT
+        -   vnfd:id: data
+            vnfd:name: data
+            vnfd:short-name: data
+            vnfd:type: VPORT
+        vnfd:description: A VNF descriptor w/ two VDU
+        vnfd:id: hackfest3vnf
+        vnfd:internal-vld:
+        -   vnfd:id: internal
+            vnfd:internal-connection-point:
+            -   vnfd:id-ref: vdu1-internal
+            -   vnfd:id-ref: vdu2-internal
+            vnfd:name: internal
+            vnfd:short-name: internal
+            vnfd:type: ELAN
+        vnfd:mgmt-interface:
+            vnfd:cp: mgmt
+        vnfd:name: Hackfest-3-vnf
+        vnfd:service-function-chain: UNAWARE
+        vnfd:short-name: Hackfest-3-vnf
+        vnfd:vdu:
+        -   vnfd:count: '1'
+            vnfd:description: vdu-2
+            vnfd:guest-epa:
+                vnfd:cpu-pinning-policy: ANY
+            vnfd:id: vdu-2
+            vnfd:image: hackfest3-mgmt
+            vnfd:interface:
+            -   rw-vnfd:floating-ip-needed: 'false'
+                vnfd:external-connection-point-ref: data
+                vnfd:name: eth0
+                vnfd:position: '1'
+                vnfd:type: EXTERNAL
+                vnfd:virtual-interface:
+                    vnfd:type: VIRTIO
+            -   rw-vnfd:floating-ip-needed: 'false'
+                vnfd:internal-connection-point-ref: vdu2-internal
+                vnfd:name: eth1
+                vnfd:position: '2'
+                vnfd:type: INTERNAL
+                vnfd:virtual-interface:
+                    vnfd:type: VIRTIO
+            vnfd:internal-connection-point:
+            -   vnfd:id: vdu2-internal
+                vnfd:name: vdu2-internal
+                vnfd:short-name: vdu2-internal
+                vnfd:type: VPORT
+            vnfd:name: vdu-2
+            vnfd:supplemental-boot-data:
+                vnfd:boot-data-drive: 'false'
+            vnfd:vm-flavor:
+                vnfd:memory-mb: '1024'
+                vnfd:storage-gb: '10'
+                vnfd:vcpu-count: '1'
+        -   vnfd:count: '1'
+            vnfd:cloud-init-file: cloud-config.txt
+            vnfd:description: vdu-1
+            vnfd:guest-epa:
+                vnfd:cpu-pinning-policy: ANY
+            vnfd:id: vdu-1
+            vnfd:image: hackfest3-mgmt
+            vnfd:interface:
+            -   rw-vnfd:floating-ip-needed: 'false'
+                vnfd:external-connection-point-ref: mgmt
+                vnfd:name: vdu1-eth0
+                vnfd:position: '1'
+                vnfd:type: EXTERNAL
+                vnfd:virtual-interface:
+                    vnfd:type: VIRTIO
+            -   rw-vnfd:floating-ip-needed: 'false'
+                vnfd:internal-connection-point-ref: vdu1-internal
+                vnfd:name: vdu1-eth1
+                vnfd:position: '2'
+                vnfd:type: INTERNAL
+                vnfd:virtual-interface:
+                    vnfd:type: VIRTIO
+            vnfd:internal-connection-point:
+            -   vnfd:id: vdu1-internal
+                vnfd:name: vdu1-internal
+                vnfd:short-name: vdu1-internal
+                vnfd:type: VPORT
+            vnfd:name: vdu-1
+            vnfd:supplemental-boot-data:
+                vnfd:boot-data-drive: 'false'
+            vnfd:vm-flavor:
+                vnfd:memory-mb: '1024'
+                vnfd:storage-gb: '10'
+                vnfd:vcpu-count: '1'
+        vnfd:version: '1.0'
+        vnfd:vnf-configuration:
+            config-primitive:
+            - name: touch
+              parameter:
+              -   data-type: STRING
+                  default-value: '/home/ubuntu/touched'
+                  name: filename
+            initial-config-primitive:
+            -   name: config
+                parameter:
+                -   name: ssh-hostname
+                    value: <rw_mgmt_ip>
+                -   name: ssh-username
+                    value: ubuntu
+                -   name: ssh-password
+                    value: ubuntu
+                seq: '1'
+            -   name: start
+                seq: '2'
+            juju:
+                charm: simple

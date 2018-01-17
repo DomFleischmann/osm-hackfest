@@ -1,0 +1,2 @@
+7b423cf67f465be1489871b0afe70fd0  hackfest_3_vnfd.yaml
+2d908b517b28c9e2ef8de2b0717c01cb  cloud_init/cloud-config.txt
