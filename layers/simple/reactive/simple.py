@@ -5,14 +5,15 @@ from charmhelpers.core.hookenv import (
     status_set,
 )
 from charms.reactive import (
-    remove_state as remove_flag,
-    set_state as set_flag,
+    remove_flag,
+    set_flag,
     when,
     when_not,
 )
 import charms.sshproxy
 
 
+@when('sshproxy.configured')
 @when_not('simple.installed')
 def install_simple_proxy_charm():
     set_flag('simple.installed')
