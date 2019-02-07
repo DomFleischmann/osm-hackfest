@@ -68,8 +68,7 @@ function cache() {
     lxc delete $container -f || true
 }
 
-# Enable caching of the serie(s) you're developing for. By default, this will
-# be the most recent Long Term Release (LTS)
+# Enable caching of the serie(s) you're developing for.
 # cache trusty "$TRUSTY_PACKAGES"
-# cache xenial "$XENIAL_PACKAGES"
-cache bionic "$BIONIC_PACKAGES"
+cache xenial "$XENIAL_PACKAGES"
+# cache bionic "$BIONIC_PACKAGES"
