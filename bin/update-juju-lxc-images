@@ -12,6 +12,50 @@
 #
 # This dramatically speeds up the install hooks for lxd deploys. On my slow
 # laptop, average install hook time went from ~7min down to ~1 minute.
+function usage(){
+    echo -e "usage: ./bin/update-juju-lxc-images [Optional flags]"
+    echo -e "This script will automatically cache all LTS series by default (trusty, xenial, and bionic)"
+    echo -e ""
+    echo -e "Optional flags"
+    echo -e "=================="
+    echo -e "--trusty                                   It will download only the trusty series"
+    echo -e "--xenial                                   It will download only the xenial series"
+    echo -e "--bionic                                   It will download only the bionic series"
+    echo -e ""
+    echo -e "Help flags"
+    echo -e "=================="
+    echo -e "-h | --help                                Print full help."
+    exit
+}
+
+FLAGS=0
+trusty=0
+xenial=0
+bionic=0
+while :; do
+    case $1 in
+        --trusty)
+            FLAGS=1
+            trusty=1
+            ;;
+        --xenial)
+            FLAGS=1
+            xenial=1
+            ;;
+        --bionic)
+            FLAGS=1
+            bionic=1
+            ;;
+        -h|--help)
+            usage
+            ;;
+        *)
+             break
+    esac
+    shift
+done
+
+
 set -eux
 
 # The basic charm layer also installs all the things. 47 packages.
@@ -69,6 +113,12 @@ function cache() {
 }
 
 # Enable caching of the serie(s) you're developing for.
-# cache trusty "$TRUSTY_PACKAGES"
-cache xenial "$XENIAL_PACKAGES"
-# cache bionic "$BIONIC_PACKAGES"
+if [ $FLAGS == 0 ]; then
+    cache trusty "$TRUSTY_PACKAGES"
+    cache xenial "$XENIAL_PACKAGES"
+    cache bionic "$BIONIC_PACKAGES"
+else
+    [ $trusty == 1 ] && cache trusty "$TRUSTY_PACKAGES"
+    [ $xenial == 1 ] && cache xenial "$XENIAL_PACKAGES"
+    [ $bionic == 1 ] && cache bionic "$BIONIC_PACKAGES"
+fi
