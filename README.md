@@ -1,2 +1,13 @@
 # osm-hackfest
-The example charms and descriptors for session 5 of the January 2018 OSM Hackfest in Nice, France
+The example charms and descriptors used during OSM Hackfests.
+
+# Proxy Charms
+## Simple
+
+# Kubernetes Charms
+## Wordpress
+
+# Contributors
+- Adam Israel <adam.israel@canonical.com>
+- David Garcia <david.garcia@canonical.com>
+- Dominik Fleischmann <dominik.fleischmann@canonical.com>
