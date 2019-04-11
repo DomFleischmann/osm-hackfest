@@ -3,14 +3,14 @@ nsd:nsd-catalog:
     -   nsd:constituent-vnfd:
         -   nsd:member-vnf-index: '1'
             nsd:start-by-default: 'true'
-            nsd:vnfd-id-ref: hackfest3vnf
+            nsd:vnfd-id-ref: simplevnf
         -   nsd:member-vnf-index: '2'
             nsd:start-by-default: 'true'
-            nsd:vnfd-id-ref: hackfest3vnf
-        nsd:description: NS with 2 VNFs
+            nsd:vnfd-id-ref: simplevnf
+        nsd:description: NS with 2 simple VNFs
         nsd:id: 455a81db-859c-418d-b7bf-1b369c61391b
-        nsd:name: Hackfest-2-ns
-        nsd:short-name: Hackfest-2-ns
+        nsd:name: simple-ns
+        nsd:short-name: simple
         nsd:version: '1.0'
         nsd:vld:
         -   nsd:id: mgmt
@@ -22,10 +22,10 @@ nsd:nsd-catalog:
             nsd:vnfd-connection-point-ref:
             -   nsd:member-vnf-index-ref: '1'
                 nsd:vnfd-connection-point-ref: mgmt
-                nsd:vnfd-id-ref: hackfest3vnf
+                nsd:vnfd-id-ref: simplevnf
             -   nsd:member-vnf-index-ref: '2'
                 nsd:vnfd-connection-point-ref: mgmt
-                nsd:vnfd-id-ref: hackfest3vnf
+                nsd:vnfd-id-ref: simplevnf
         -   nsd:id: data
             nsd:mgmt-network: 'false'
             nsd:name: data
@@ -34,7 +34,7 @@ nsd:nsd-catalog:
             nsd:vnfd-connection-point-ref:
             -   nsd:member-vnf-index-ref: '1'
                 nsd:vnfd-connection-point-ref: data
-                nsd:vnfd-id-ref: hackfest3vnf
+                nsd:vnfd-id-ref: simplevnf
             -   nsd:member-vnf-index-ref: '2'
                 nsd:vnfd-connection-point-ref: data
-                nsd:vnfd-id-ref: hackfest3vnf
+                nsd:vnfd-id-ref: simplevnf

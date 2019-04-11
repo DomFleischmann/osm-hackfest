@@ -10,7 +10,7 @@ vnfd:vnfd-catalog:
             vnfd:short-name: data
             vnfd:type: VPORT
         vnfd:description: A VNF descriptor w/ two VDU
-        vnfd:id: hackfest3vnf
+        vnfd:id: simplevnf
         vnfd:internal-vld:
         -   vnfd:id: internal
             vnfd:internal-connection-point:
@@ -21,16 +21,16 @@ vnfd:vnfd-catalog:
             vnfd:type: ELAN
         vnfd:mgmt-interface:
             vnfd:cp: mgmt
-        vnfd:name: Hackfest-3-vnf
+        vnfd:name: simple-vnf
         vnfd:service-function-chain: UNAWARE
-        vnfd:short-name: Hackfest-3-vnf
+        vnfd:short-name: simple-vnf
         vnfd:vdu:
         -   vnfd:count: '1'
             vnfd:description: vdu-2
             vnfd:guest-epa:
                 vnfd:cpu-pinning-policy: ANY
             vnfd:id: vdu-2
-            vnfd:image: hackfest3-mgmt
+            vnfd:image: ubuntu16.04
             vnfd:interface:
             -   rw-vnfd:floating-ip-needed: 'false'
                 vnfd:external-connection-point-ref: data
@@ -64,7 +64,7 @@ vnfd:vnfd-catalog:
             vnfd:guest-epa:
                 vnfd:cpu-pinning-policy: ANY
             vnfd:id: vdu-1
-            vnfd:image: hackfest3-mgmt
+            vnfd:image: ubuntu16.04
             vnfd:interface:
             -   rw-vnfd:floating-ip-needed: 'false'
                 vnfd:external-connection-point-ref: mgmt
@@ -112,5 +112,10 @@ vnfd:vnfd-catalog:
                 seq: '1'
             -   name: start
                 seq: '2'
+            -   name: touch
+                parameter:
+                -   name: filename
+                    value: "/tmp/first-touch"
+                seq: '3'
             juju:
                 charm: simple
